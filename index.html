@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 31 Wednesday & Thursday Practice Quiz</title>
+    <style>
+        /* --- CSS Variables & Themes --- */
+        :root {
+            /* Base Transition */
+            --transition-speed: 0.3s;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* 1. Modern Dark (Default) */
+        [data-theme="dark"] {
+            --bg-body: #1e293b;
+            --bg-card: #334155;
+            --bg-header: #0f172a;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-accent: #38bdf8;
+            --border-color: #475569;
+            --highlight-bg: #475569;
+            --button-bg: #38bdf8;
+            --button-text: #0f172a;
+            --button-hover: #0ea5e9;
+            --feedback-success-bg: #064e3b;
+            --feedback-success-border: #059669;
+            --feedback-success-text: #a7f3d0;
+            --feedback-error-bg: #7f1d1d;
+            --feedback-error-border: #dc2626;
+            --feedback-error-text: #fecaca;
+        }
+
+        /* 2. Modern Light */
+        [data-theme="light"] {
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --bg-header: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --text-accent: #2563eb;
+            --border-color: #e5e7eb;
+            --highlight-bg: #f3f4f6;
+            --button-bg: #2563eb;
+            --button-text: #ffffff;
+            --button-hover: #1d4ed8;
+            --feedback-success-bg: #ecfdf5;
+            --feedback-success-border: #34d399;
+            --feedback-success-text: #065f46;
+            --feedback-error-bg: #fef2f2;
+            --feedback-error-border: #f87171;
+            --feedback-error-text: #991b1b;
+        }
+
+        /* 3. Midnight (Pure Black) */
+        [data-theme="midnight"] {
+            --bg-body: #000000;
+            --bg-card: #000000;
+            --bg-header: #000000;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --text-accent: #90caf9;
+            --border-color: #333333;
+            --highlight-bg: #1a1a1a;
+            --button-bg: #90caf9;
+            --button-text: #000000;
+            --button-hover: #42a5f5;
+            --feedback-success-bg: #051b11;
+            --feedback-success-border: #0f5132;
+            --feedback-success-text: #75b798;
+            --feedback-error-bg: #2c0b0e;
+            --feedback-error-border: #842029;
+            --feedback-error-text: #ea868f;
+        }
+
+        /* 4. Legacy Dark (Original) */
+        [data-theme="legacy-dark"] {
+            --bg-body: #2d343e;
+            --bg-card: #3c424f;
+            --bg-header: #3c424f;
+            --text-main: #e8e6e3;
+            --text-muted: #b0c4de;
+            --text-accent: #8ab4f8;
+            --border-color: #555;
+            --highlight-bg: #454c5a;
+            --button-bg: #8ab4f8;
+            --button-text: #202124;
+            --button-hover: #a3c5f9;
+            --feedback-success-bg: #344e41;
+            --feedback-success-border: #52b788;
+            --feedback-success-text: #c7f9cc;
+            --feedback-error-bg: #5e2129;
+            --feedback-error-border: #a4133c;
+            --feedback-error-text: #f8d7da;
+        }
+
+        /* 5. Sepia (Reading Mode) */
+        [data-theme="sepia"] {
+            --bg-body: #f4ecd8;
+            --bg-card: #fdf6e3;
+            --bg-header: #e4d5b7;
+            --text-main: #433422;
+            --text-muted: #7c6f5a;
+            --text-accent: #a05a2c;
+            --border-color: #d3c4a5;
+            --highlight-bg: #ebe1c9;
+            --button-bg: #a05a2c;
+            --button-text: #fdf6e3;
+            --button-hover: #864822;
+            --feedback-success-bg: #e6f4ea;
+            --feedback-success-border: #8ab893;
+            --feedback-success-text: #2e4c35;
+            --feedback-error-bg: #f9e3e3;
+            --feedback-error-border: #d48f8f;
+            --feedback-error-text: #5c2b2b;
+        }
+
+        /* 6. High Contrast */
+        [data-theme="contrast"] {
+            --bg-body: #000000;
+            --bg-card: #000000;
+            --bg-header: #000000;
+            --text-main: #ffffff;
+            --text-muted: #dddddd;
+            --text-accent: #ffff00;
+            --border-color: #ffffff;
+            --highlight-bg: #333333;
+            --button-bg: #ffff00;
+            --button-text: #000000;
+            --button-hover: #e6e600;
+            --feedback-success-bg: #000000;
+            --feedback-success-border: #00ff00;
+            --feedback-success-text: #00ff00;
+            --feedback-error-bg: #000000;
+            --feedback-error-border: #ff0000;
+            --feedback-error-text: #ff0000;
+        }
+
+        /* --- Global Reset & Layout --- */
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-main);
+            margin: 0;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            line-height: 1.6;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--bg-header);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            /* Default to Sticky */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Class to remove sticky behavior */
+        header.unpinned {
+            position: relative;
+            box-shadow: none;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: var(--text-accent);
+        }
+
+        .controls-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pin-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .pin-btn:hover {
+            background-color: var(--highlight-bg);
+        }
+
+        .pin-btn.pin-active {
+            color: var(--text-accent);
+            border-color: var(--text-accent);
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        select#theme-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* --- Section Navigation --- */
+        .section-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .section-nav button {
+            background-color: var(--highlight-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .section-nav button:hover {
+            border-color: var(--text-accent);
+            color: var(--text-accent);
+        }
+
+        /* --- Main Content --- */
+        .container {
+            max-width: 850px;
+            margin: 2rem auto;
+            padding: 0 1rem 4rem 1rem;
+        }
+
+        .section-header {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--text-accent);
+            color: var(--text-accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+            scroll-margin-top: 140px; /* Offset for sticky header */
+        }
+
+        /* --- Question Card --- */
+        .question-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .lo-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--text-accent);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Options --- */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-label:hover {
+            background-color: var(--highlight-bg);
+            border-color: var(--text-muted);
+        }
+
+        .option-label input {
+            margin-top: 0.3rem;
+            margin-right: 1rem;
+            accent-color: var(--text-accent);
+            transform: scale(1.2);
+        }
+
+        /* --- Buttons --- */
+        .btn-check {
+            margin-top: 1.5rem;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-check:hover {
+            opacity: 0.9;
+        }
+
+        /* --- Feedback Area --- */
+        .feedback {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: none; /* Hidden by default */
+            border: 1px solid transparent;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.correct {
+            background-color: var(--feedback-success-bg);
+            border-color: var(--feedback-success-border);
+            color: var(--feedback-success-text);
+        }
+
+        .feedback.incorrect {
+            background-color: var(--feedback-error-bg);
+            border-color: var(--feedback-error-border);
+            color: var(--feedback-error-text);
+        }
+
+        .feedback-header {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .rationale {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .source {
+            display: block;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-style: italic;
+            border-top: 1px dashed currentColor;
+            padding-top: 0.5rem;
+        }
+
+        /* --- Mobile Tweaks --- */
+        @media (max-width: 600px) {
+            .header-top { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .controls-wrapper { width: 100%; justify-content: space-between; }
+            .question-card { padding: 1.5rem; }
+            header h1 { font-size: 1.1rem; }
+            .section-nav { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="header-top">
+            <h1>Week 31 Wednesday & Thursday Practice Quiz</h1>
+            <div class="controls-wrapper">
+                <!-- Pin Button -->
+                <button class="pin-btn pin-active" id="pin-btn" onclick="toggleHeader()" title="Pin/Unpin Header">
+                    📍
+                </button>
+                
+                <div class="theme-control">
+                    <label for="theme-select">Theme:</label>
+                    <select id="theme-select" onchange="changeTheme(this.value)">
+                        <option value="dark">Modern Dark</option>
+                        <option value="midnight">Midnight</option>
+                        <option value="light">Modern Light</option>
+                        <option value="legacy-dark">Legacy Dark</option>
+                        <option value="sepia">Sepia</option>
+                        <option value="contrast">High Contrast</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- Dynamic Navigation Bar injected via JS -->
+        <div class="section-nav" id="section-nav"></div>
+    </header>
+
+    <div class="container" id="quiz-root">
+        <!-- Content injected via JS -->
+    </div>
+
+    <script>
+        // --- Data ---
+        const quizData = [
+            // --- Section 1: Pathology of Interstitial Lung Disease ---
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO1: Describe the common features of lung diseases grouped generally as [specific disease group].",
+                fullLO: "LO1: Describe the common features of lung diseases grouped generally as interstitial lung diseases.",
+                question: "A 60-year-old man presents with progressive shortness of breath over the past year. Pulmonary function tests reveal a decreased forced vital capacity (FVC) and decreased total lung capacity (TLC), but a normal FEV<sub>1</sub>/FVC ratio. A surgical lung biopsy demonstrates diffuse interstitial inflammation and fibrosis. This patient's condition belongs to a heterogeneous group of disorders collectively known as interstitial lung diseases (ILDs). Which of the following is a common feature shared by the majority of diseases in this group?",
+                options: {
+                    A: "Acute and rapid clinical onset",
+                    B: "Chronic and diffuse presentation",
+                    C: "Obstructive pattern on pulmonary function tests",
+                    D: "Primary involvement of the large airways",
+                    E: "Reversibility with bronchodilator therapy"
+                },
+                correctAnswer: "B",
+                rationale: "Interstitial lung diseases (also known as diffuse parenchymal lung diseases) are a heterogeneous group of disorders. Despite their differences, they share common features, including a usually diffuse and chronic presentation, interstitial pathologic changes, and a restrictive pattern on pulmonary function tests.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 8: \"Interstitial Lung Diseases... Common features: Usually diffuse and chronic... PFTs usually show restrictive pattern\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO1: Describe the common features of lung diseases grouped generally as [specific disease group].",
+                fullLO: "LO1: Describe the common features of lung diseases grouped generally as interstitial lung diseases.",
+                question: "A 55-year-old woman is diagnosed with an interstitial lung disease (ILD). She asks her physician about the expected course of her condition over the next several years. The physician explains that ILDs represent a heterogeneous group of diseases with variable clinical behaviors. While some forms of ILD can be self-limited or reversible, others are characterized by which of the following clinical trajectories?",
+                options: {
+                    A: "Complete resolution with short-term antibiotic therapy",
+                    B: "Progression to severe fibrosis and death",
+                    C: "Progression to squamous cell carcinoma",
+                    D: "Spontaneous remission after 10 years without intervention",
+                    E: "Transformation into a primarily obstructive lung disease"
+                },
+                correctAnswer: "B",
+                rationale: "ILDs exhibit highly variable clinical behaviors depending on the specific etiology and subtype. Some are self-limited or reversible, while others have a relentless course that progresses to severe fibrosis and ultimately death.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 8: \"Variable clinical behaviors: Some progress to severe fibrosis and death; Some are self-limited or reversible\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO2: Compare and contrast the general features of restrictive and obstructive lung diseases.",
+                fullLO: "LO2: Compare and contrast the general features of restrictive and obstructive lung diseases.",
+                question: "A 62-year-old man is undergoing pulmonary function testing (PFT) for progressive exertional dyspnea. His results show a forced vital capacity (FVC) of 65% of predicted and a total lung capacity (TLC) of 60% of predicted. Which of the following PFT findings would best confirm that he has a restrictive lung disease rather than an obstructive lung disease?",
+                options: {
+                    A: "Decreased FEV<sub>1</sub>",
+                    B: "Decreased peak expiratory flow",
+                    C: "Increased residual volume",
+                    D: "Normal to increased FVC",
+                    E: "Normal FEV<sub>1</sub>/FVC ratio"
+                },
+                correctAnswer: "E",
+                rationale: "In restrictive lung diseases, both the FEV<sub>1</sub> and FVC are decreased proportionally, resulting in a normal FEV<sub>1</sub>/FVC ratio. In contrast, obstructive lung diseases are characterized by a decreased FEV<sub>1</sub>/FVC ratio. Both conditions can present with a decreased FEV<sub>1</sub>.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 19: \"Obstructive vs. Restrictive Pulmonary Diseases - Pulmonary Function Tests: Restrictive: FVC [Decreased], TLC [Decreased], FEV1 [Decreased], FEV1/FVC [Normal]\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO2: Compare and contrast the general features of restrictive and obstructive lung diseases.",
+                fullLO: "LO2: Compare and contrast the general features of restrictive and obstructive lung diseases.",
+                question: "A 68-year-old woman with long-standing idiopathic pulmonary fibrosis develops signs of right ventricular failure. Echocardiography confirms the presence of severe pulmonary hypertension. In the context of her restrictive lung disease, which of the following pathophysiologic mechanisms is the primary driver of her pulmonary hypertension?",
+                options: {
+                    A: "Destruction of the capillary bed leading to increased cross-sectional area",
+                    B: "Hypoxia-induced pulmonary vasodilation",
+                    C: "Increased pulmonary vascular bed compliance",
+                    D: "Left ventricular diastolic dysfunction",
+                    E: "Reduction of the pulmonary vascular bed due to fibrosis"
+                },
+                correctAnswer: "E",
+                rationale: "Restrictive lung diseases cause \"stiff\" lungs and reduced diffusing capacity. Patients are prone to developing pulmonary hypertension due to hypoxia-induced pulmonary vasoconstriction and the physical reduction of the pulmonary vascular bed. Pushing the same blood volume per unit of time through a reduced cross-sectional area leads to hypertension.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 18: \"Prone to develop pulmonary hypertension... Reduction of pulmonary vascular bed: Same blood volume per unit of time through reduced cross-sectional area = hypertension\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO3: Explain the importance of correlating clinical, radiographic, pulmonary function testing and pathologic findings when evaluating a patient with [disease].",
+                fullLO: "LO3: Explain the importance of correlating clinical, radiographic, pulmonary function testing and pathologic findings when evaluating a patient with interstitial lung disease.",
+                question: "A pathologist examines a surgical lung biopsy from a 50-year-old man and identifies a \"Usual Interstitial Pneumonia (UIP)\" histologic pattern. The pathologist requests the patient's clinical history, occupational exposures, and high-resolution CT (HRCT) scans before finalizing the report. Which of the following best explains why the final diagnosis requires this multidisciplinary integration?",
+                options: {
+                    A: "Histologic patterns alone cannot determine the extent of lung volume loss",
+                    B: "HRCT is required to detect the presence of asbestos bodies within the sample",
+                    C: "Pulmonary function tests are needed to confirm the presence of granulomas",
+                    D: "Some histologic patterns can be seen in other lung diseases of known etiology",
+                    E: "UIP is an acute pattern that frequently resolves without treatment"
+                },
+                correctAnswer: "D",
+                rationale: "A histologic pattern (such as UIP) is not entirely specific to a single disease. For example, a UIP pattern can be seen in Idiopathic Pulmonary Fibrosis, but also in connective tissue diseases or asbestosis. Therefore, clinical and radiologic correlation is strictly required to determine if the etiology is known or idiopathic.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 36: \"Question: Why don’t histologic patterns and the integrated diagnosis always have the same name? Answer: Some histologic patterns can be seen in other lung diseases of known etiology.\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO3: Explain the importance of correlating clinical, radiographic, pulmonary function testing and pathologic findings when evaluating a patient with [disease].",
+                fullLO: "LO3: Explain the importance of correlating clinical, radiographic, pulmonary function testing and pathologic findings when evaluating a patient with interstitial lung disease.",
+                question: "A multidisciplinary team consisting of a pulmonologist, a radiologist, and a pathologist is reviewing the case of a 58-year-old woman with progressive dyspnea. They agree that a diagnosis of an idiopathic interstitial pneumonia should only be finalized after reviewing all clinical, radiological, and pathological data together. According to the American Thoracic Society consensus statement, what is the primary historical reason for this multidisciplinary standard?",
+                options: {
+                    A: "A lack of an international standard had resulted in variable and confusing diagnostic criteria and terminology",
+                    B: "Pathologists were historically unable to reliably identify fibroblastic foci",
+                    C: "Radiologists cannot differentiate between restrictive and obstructive disease patterns",
+                    D: "Surgical lung biopsies frequently yield insufficient tissue for any morphologic diagnosis",
+                    E: "UIP patterns are exclusively diagnosed via clinical history"
+                },
+                correctAnswer: "A",
+                rationale: "Because of the confusion and overlapping terminology in the past, an international consensus established that the final diagnosis must be integrated and multidisciplinary, combining pulmonology, radiology, and pathology to accurately classify idiopathic interstitial pneumonias.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 32: \"Despite the considerable progress in the classification of the idiopathic interstitial pneumonias, the lack of an international standard has resulted in variable and confusing diagnostic criteria and terminology... i.e. The final diagnosis is an integrated, multidisciplinary diagnosis\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO4: Describe idiopathic pulmonary fibrosis (IPF) in regard to pathogenesis, morphologic features, and clinical manifestations.",
+                fullLO: "LO4: Describe idiopathic pulmonary fibrosis (IPF) in regard to pathogenesis, morphologic features, and clinical manifestations.",
+                question: "A 65-year-old male former smoker presents with progressively worsening shortness of breath. A lung biopsy shows patchy interstitial fibrosis, fibroblastic foci, and honeycomb change, leading to a diagnosis of Idiopathic Pulmonary Fibrosis (IPF). The pathogenesis of this disease involves repeated epithelial injury that leads to abnormal fibroblast proliferation. Which of the following cytokines is considered the key mediator driving this dysregulated fibrogenesis?",
+                options: {
+                    A: "Interferon-gamma (IFN-&gamma;)",
+                    B: "Interleukin-2 (IL-2)",
+                    C: "Interleukin-4 (IL-4)",
+                    D: "Transforming Growth Factor-Beta 1 (TGF-&beta;1)",
+                    E: "Tumor Necrosis Factor-Alpha (TNF-&alpha;)"
+                },
+                correctAnswer: "D",
+                rationale: "The pathogenesis of IPF is driven by repeated/chronic epithelial injury, which activates macrophages and injured pneumocytes to release TGF-&beta;1. TGF-&beta;1 is highly fibrogenic, promoting the influx of fibroblasts and their deposition of collagen.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slides 45 & 46: \"Pathogenesis of Idiopathic Pulmonary Fibrosis... TGF-&beta;1 (Transforming Growth Factor Beta)... Promotes collagen deposition (fibrosis) by fibroblasts and myofibroblasts\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO4: Describe idiopathic pulmonary fibrosis (IPF) in regard to pathogenesis, morphologic features, and clinical manifestations.",
+                fullLO: "LO4: Describe idiopathic pulmonary fibrosis (IPF) in regard to pathogenesis, morphologic features, and clinical manifestations.",
+                question: "A lung biopsy from a 62-year-old man reveals varying stages of interstitial disease. In some areas, there are active, inflamed fibroblastic foci, while adjacent areas show dense, acellular collagenous fibrosis and complete loss of normal alveolar architecture (\"honeycomb lung\"). This specific microscopic finding of varying stages of fibrosis within the same tissue is a key diagnostic feature of IPF known as:",
+                options: {
+                    A: "Caseating necrosis",
+                    B: "Granulomatous inflammation",
+                    C: "Hypersensitivity reaction",
+                    D: "Temporal heterogeneity",
+                    E: "Uniform fibrotic scarring"
+                },
+                correctAnswer: "D",
+                rationale: "A hallmark of the Usual Interstitial Pneumonia (UIP) pattern seen in IPF is \"temporal heterogeneity,\" meaning the biopsy simultaneously shows early/active lesions (fibroblastic foci) and old/burned-out lesions (dense collagenous fibrosis).",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 53: \"Idiopathic Pulmonary Fibrosis... Temporal Heterogeneity - A diagnostic feature - Active = inflamed, fibroblastic foci; Burned Out = dense collagenous fibrosis\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO5: Describe the relationship between IPF and [specific pattern].",
+                fullLO: "LO5: Describe the relationship between IPF and usual interstitial pneumonia (UIP).",
+                question: "A 60-year-old man undergoes a surgical lung biopsy for evaluation of severe diffuse parenchymal lung disease. The pathologist notes a \"Usual Interstitial Pneumonia (UIP)\" histologic pattern. The clinical team systematically rules out connective tissue disease, drug toxicity, and environmental exposures. Given these integrated findings, which of the following is the final clinical diagnosis for this patient?",
+                options: {
+                    A: "Acute interstitial pneumonia",
+                    B: "Cryptogenic organizing pneumonia",
+                    C: "Desquamative interstitial pneumonia",
+                    D: "Idiopathic pulmonary fibrosis",
+                    E: "Respiratory bronchiolitis interstitial lung disease"
+                },
+                correctAnswer: "D",
+                rationale: "Usual interstitial pneumonia (UIP) is a descriptive histopathologic pattern. When the UIP pattern is found in a patient without any identifiable cause (idiopathic), the integrated clinical-radiologic-pathologic diagnosis is Idiopathic Pulmonary Fibrosis (IPF).",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 35: \"Histopathologic Pattern: Usual interstitial pneumonia (UIP) -> Integrated Clinical-Radiologic-Pathologic Diagnosis: Idiopathic pulmonary fibrosis (IPF) / Cryptogenic fibrosing alveolitis\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO5: Describe the relationship between IPF and [specific pattern].",
+                fullLO: "LO5: Describe the relationship between IPF and usual interstitial pneumonia (UIP).",
+                question: "A 72-year-old man who worked in shipbuilding and insulation installation for 30 years presents with progressive dyspnea. His high-resolution CT and lung biopsy demonstrate a classic pattern of Usual Interstitial Pneumonia (UIP). However, microscopic examination of the tissue under high power also reveals iron-protein complexes deposited on long, rod-like structures. Due to the presence of these structures, this UIP pattern is clinically diagnosed as:",
+                options: {
+                    A: "Asbestosis",
+                    B: "Berylliosis",
+                    C: "Hypersensitivity pneumonitis",
+                    D: "Idiopathic pulmonary fibrosis",
+                    E: "Silicosis"
+                },
+                correctAnswer: "A",
+                rationale: "The UIP pattern is not exclusive to IPF. In a patient with a history of asbestos exposure and the histologic presence of asbestos bodies (iron-protein complexes on fibers), the diagnosis is asbestosis, a known environmental cause of interstitial fibrosis that mimics IPF.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 62: \"Asbestosis vs IPF: Gross and microscopic appearances can be very similar (UIP pattern). Asbestosis distinguished by presence of asbestos bodies\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO6: Describe hypersensitivity pneumonitis in regard to etiologic agents, pathogenesis and morphologic features.",
+                fullLO: "LO6: Describe hypersensitivity pneumonitis in regard to etiologic agents, pathogenesis and morphologic features.",
+                question: "A 40-year-old pigeon breeder presents to the clinic with an insidious onset of dyspnea, dry cough, and fatigue over the past six months. A lung lavage fluid analysis reveals significantly elevated CD8 and CD4 lymphocytes, and serum precipitins are positive. The pathogenesis of this patient's disease is immunologically mediated primarily through which of the following mechanisms?",
+                options: {
+                    A: "IgE-mediated mast cell degranulation (Type I)",
+                    B: "Autoantibody targeting of basement membranes (Type II)",
+                    C: "Immune complex (Type III) and cell-mediated (Type IV) mechanisms",
+                    D: "Direct viral cytopathic effect on pneumocytes",
+                    E: "Malignant transformation of type II pneumocytes"
+                },
+                correctAnswer: "C",
+                rationale: "Hypersensitivity pneumonitis is an immunologically mediated disease provoked by organic antigens (like avian proteins in pigeon breeders). Its pathogenesis is driven by Type III (immune complex) and Type IV (cell-mediated) hypersensitivity mechanisms.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 71: \"Hypersensitivity Pneumonitis - Pathogenesis - Immunologically mediated: Type III (immune complex) mechanism, Type IV (cell mediated) mechanism\""
+            },
+            {
+                section: "Pathology of Interstitial Lung Disease",
+                maskedLO: "LO6: Describe hypersensitivity pneumonitis in regard to etiologic agents, pathogenesis and morphologic features.",
+                fullLO: "LO6: Describe hypersensitivity pneumonitis in regard to etiologic agents, pathogenesis and morphologic features.",
+                question: "A 45-year-old farmer develops chronic respiratory symptoms after repeated exposure to moldy hay containing thermophilic actinomycetes. A transbronchial biopsy is performed to evaluate for hypersensitivity pneumonitis. Which of the following microscopic findings is most characteristic of this condition?",
+                options: {
+                    A: "Dense, temporally heterogeneous collagenous fibrosis",
+                    B: "Expansion of the interstitium with chronic inflammatory cells and ill-defined non-necrotizing granulomas",
+                    C: "Extensive caseous necrosis with multinucleated giant cells",
+                    D: "Intra-alveolar purulent exudates with abundant neutrophils",
+                    E: "Sheets of eosinophils within the alveolar septa"
+                },
+                correctAnswer: "B",
+                rationale: "The morphologic hallmark of hypersensitivity pneumonitis (extrinsic allergic alveolitis) includes expansion of the interstitium with chronic inflammatory cells (lymphocytes, plasma cells, macrophages) and the presence of ill-defined, non-necrotizing granulomas.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 72: \"Hypersensitivity Pneumonitis (Extrinsic Allergic Alveolitis): Expansion of interstitium with chronic inflammatory cells... Ill-defined granuloma\""
+            },
+
+            // --- Section 2: Clinical Approach to Interstitial Lung Disease ---
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO1: What is [disease group] ? Types and Pathophysiology.",
+                fullLO: "LO1: What is ILD ? Types and Pathophysiology",
+                question: "A 60-year-old man presents with progressive shortness of breath and a dry cough. His physician explains that he likely has an interstitial lung disease (ILD), which involves inflammation and fibrosis of a specific anatomic compartment in the lung. Which of the following best defines the \"interstitium\" affected in these diverse disorders?",
+                options: {
+                    A: "The cartilaginous rings supporting the main bronchi",
+                    B: "The contiguous fluid-filled space between a structural barrier and an organ",
+                    C: "The inner mucosal lining of the trachea",
+                    D: "The pleural space between the visceral and parietal pleura",
+                    E: "The smooth muscle layer of the pulmonary artery"
+                },
+                correctAnswer: "B",
+                rationale: "Interstitial lung diseases are a diverse group of disorders involving the distal pulmonary parenchyma. The interstitium is anatomically defined as the contiguous fluid-filled space between a structural barrier (like the alveolar epithelium) and an organ (like the capillary endothelium).",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slide 3: \"Interstitium: Contiguous fluid filled space between a structural barrier and an organ\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO1: What is [disease group] ? Types and Pathophysiology.",
+                fullLO: "LO1: What is ILD ? Types and Pathophysiology",
+                question: "A 65-year-old woman with a history of recurrent urinary tract infections presents with a chronic dry cough and progressive dyspnea. She is currently taking multiple medications, including nitrofurantoin. Her physician suspects her lung disease is drug-induced. To accurately evaluate this potential etiology, the physician should highly rely on which of the following approaches?",
+                options: {
+                    A: "An echocardiogram to assess right ventricular function",
+                    B: "Bronchoalveolar lavage to routinely check for neutrophilia",
+                    C: "Consulting pneumotox.com and assessing the temporal association between the exposure and symptoms",
+                    D: "Genetic testing for Hermansky-Pudlak syndrome",
+                    E: "Measurement of serum anti-Scl70 antibodies"
+                },
+                correctAnswer: "C",
+                rationale: "Drug-induced interstitial lung disease can be caused by numerous agents, including amiodarone and nitrofurantoin. Evaluation relies on databases like pneumotox.com and carefully verifying the temporal association between the start of the drug and the onset of symptoms.",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slide 16: \"Effect of Drugs on Lung: pneumotox.com... Amiodarone, check point inhibitors, nitrofurantoin. Temporal Association between exposures and symptoms\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO2: History taking and Lung Functions in ILD.",
+                fullLO: "LO2: History taking and Lung Functions in ILD",
+                question: "A 68-year-old man with suspected interstitial lung disease undergoes comprehensive pulmonary function testing. Which of the following sets of findings is most characteristic of the physiologic profile seen in patients with ILD?",
+                options: {
+                    A: "Decreased lung volumes, decreased diffusion capacity, and decreased pO<sub>2</sub> with exercise",
+                    B: "Decreased lung volumes, increased diffusion capacity, and normal pO<sub>2</sub> with exercise",
+                    C: "Increased lung volumes, decreased diffusion capacity, and decreased pO<sub>2</sub> with exercise",
+                    D: "Increased lung volumes, increased diffusion capacity, and normal pO<sub>2</sub> with exercise",
+                    E: "Normal lung volumes, normal diffusion capacity, and severe resting hypercapnia"
+                },
+                correctAnswer: "A",
+                rationale: "ILDs restrict lung expansion, leading to decreased lung volumes. The interstitial thickening impairs gas exchange, causing a decreased diffusion capacity (DLCO) and leading to arterial desaturation (decreased pO<sub>2</sub>), especially during exercise.",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slide 38: \"Pulmonary Function tests in ILD: &darr; lung volumes, &darr; diffusion capacity, &darr; pO2, &darr; pO2 with exercise\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO2: History taking and Lung Functions in ILD.",
+                fullLO: "LO2: History taking and Lung Functions in ILD",
+                question: "A 70-year-old woman presents with progressively worsening shortness of breath. Detailed history taking reveals that she has experienced dry eyes, joint pains affecting her small joints, and fingers that turn blue and white on exposure to cold (Raynaud's phenomenon). Physical examination of the lungs reveals bilateral Velcro-like crackles. Based on these systemic clues, her interstitial lung disease is most likely associated with which of the following underlying conditions?",
+                options: {
+                    A: "Amiodarone toxicity",
+                    B: "Asbestos exposure",
+                    C: "Hypersensitivity pneumonitis",
+                    D: "Rheumatoid arthritis or another systemic autoimmune disease",
+                    E: "Silicosis"
+                },
+                correctAnswer: "D",
+                rationale: "The presence of dry eyes, joint pains, and Raynaud's phenomenon are classic systemic manifestations of connective tissue/autoimmune diseases (such as Sjogren's, Scleroderma, or Rheumatoid Arthritis). These diseases are a known, major cause of interstitial lung disease.",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slide 56: \"Gather all the puzzle pieces: 70 year old female with h/o progessive worsening shortness of breath... fingers have turned blue and white on exposure to cold... Dry eyes. Always has to have a bottle of water handy. Joint pains... Which rheumatologic condition does she have? Sjogren’s syndrome, Scleroderma, Lupus, Rheumatoid arthritis\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO3: Correlate radiology with pathology in ILD.",
+                fullLO: "LO3: Correlate radiology with pathology in ILD",
+                question: "A 69-year-old man with a 30-pack-year smoking history presents with severe exertional dyspnea. A High Resolution Computed Tomography (HRCT) scan of the chest is performed to assess for interstitial lung disease. Which of the following HRCT findings would be most diagnostic of a Usual Interstitial Pneumonia (UIP) pattern?",
+                options: {
+                    A: "Central, perihilar consolidation",
+                    B: "Diffuse ground-glass opacities with upper lobe predominance",
+                    C: "Large conglomerate masses with egg-shell calcifications",
+                    D: "Subpleural, basal predominant reticular abnormalities with honeycombing",
+                    E: "Upper lobe cysts with spontaneous pneumothorax"
+                },
+                correctAnswer: "D",
+                rationale: "The classic HRCT pattern for UIP (the radiologic correlate of IPF) is characterized by subpleural, basal predominance, reticular abnormalities, and honeycombing with or without traction bronchiectasis.",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slide 27: \"UIP HRCT Pattern: Subpleural, basal predominance; Reticular abnormality; Honeycombing with or without traction bronchiectasis\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO3: Correlate radiology with pathology in ILD.",
+                fullLO: "LO3: Correlate radiology with pathology in ILD",
+                question: "A 57-year-old man who worked in hard-rock mining for over a decade presents with dyspnea. His chest radiograph shows a conglomeration of small nodules with relative sparing of the bibasilar area, and prominent \"egg-shell\" calcifications in both hila. High-resolution CT demonstrates progressive massive fibrosis. These radiographic findings correlate most strongly with the pathology of which occupational lung disease?",
+                options: {
+                    A: "Asbestosis",
+                    B: "Coal Worker's Pneumoconiosis",
+                    C: "Idiopathic Pulmonary Fibrosis",
+                    D: "Rheumatoid lung disease",
+                    E: "Silicosis"
+                },
+                correctAnswer: "E",
+                rationale: "Hard-rock mining exposure combined with upper-lobe predominant nodules and pathognomonic \"egg-shell\" calcifications in the hilar lymph nodes is classic for Silicosis (which can progress to complicated pneumoconiosis/progressive massive fibrosis).",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slides 25 & 31: \"Silicosis: Chest radiograph shows multiple larger nodules... Note calcification in some of the pulmonary nodules and the hilar lymph nodes.\" and \"Complicated CWP in a 57-year-old man. (a) Chest radiograph shows a conglomeration of small nodules... and egg-shell calcifications in both hila.\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO4: Approach to treatment.",
+                fullLO: "LO4: Approach to treatment",
+                question: "A 72-year-old man with a confirmed multidisciplinary diagnosis of Idiopathic Pulmonary Fibrosis (IPF) presents to the clinic to discuss management. He does not have any identifiable connective tissue disease or environmental exposures. Which of the following is the most appropriate targeted pharmacologic therapy to slow the progression of his specific disease?",
+                options: {
+                    A: "Anti-fibrotic agents such as pirfenidone or nintedanib",
+                    B: "Broad-spectrum antibiotics",
+                    C: "High-dose oral corticosteroids",
+                    D: "Immunosuppressants such as azathioprine or cyclophosphamide",
+                    E: "Inhaled bronchodilators and anticholinergics"
+                },
+                correctAnswer: "A",
+                rationale: "While immunosuppressants and steroids may be used for some inflammatory ILDs, the standard of care to slow the progression of IPF (a purely fibrotic disease) is the use of anti-fibrotic agents like pirfenidone and nintedanib.",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slide 50: \"Therapy... Anti fibrotic agents such as pirfenidone nintedanib and nerandomilast for fibrotic lung disease\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO4: Approach to treatment.",
+                fullLO: "LO4: Approach to treatment",
+                question: "A 45-year-old landscaper is diagnosed with hypersensitivity pneumonitis after presenting with dyspnea and a non-productive cough. Further investigation reveals he frequently handles moldy mulch at work. According to the principles of ILD therapy, what is the most critical initial step in the management of this patient's condition?",
+                options: {
+                    A: "Avoidance of the etiologic agent",
+                    B: "Double lung transplantation",
+                    C: "Initiation of pirfenidone",
+                    D: "Lifelong continuous oxygen therapy",
+                    E: "Surgical lung volume reduction"
+                },
+                correctAnswer: "A",
+                rationale: "Hypersensitivity pneumonitis is caused by an immune reaction to an inhaled organic antigen. The most important and effective initial treatment is the strict avoidance and removal of the offending noxious stimulus.",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slides 50 & 58: \"Therapy: Avoidance of etiologic agent\" and \"Summary... Treatment options include avoid precipitating factors, remove noxious stimuli\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO5: Prognosis and disease burden.",
+                fullLO: "LO5: Prognosis and disease burden",
+                question: "A 65-year-old patient is newly diagnosed with Idiopathic Pulmonary Fibrosis (IPF) after a thorough clinical, radiologic, and pathologic workup. He asks his physician what to expect regarding the natural course of his disease over time. The physician should inform him that the majority of IPF patients experience a clinical course characterized by:",
+                options: {
+                    A: "A single acute exacerbation followed by complete recovery",
+                    B: "A slow, steady, progressive worsening of disease with death typically 2-5 years after diagnosis",
+                    C: "Decades of stable, asymptomatic lung function",
+                    D: "Rapid spontaneous remission within the first year",
+                    E: "Stable residual disease that does not impact overall life expectancy"
+                },
+                correctAnswer: "B",
+                rationale: "While the course of IPF can be variable (including rapid progression or acute exacerbations), the majority of patients experience a slow, steady progression of irreversible fibrosis that is fatal within 2 to 5 years of diagnosis.",
+                source: "Pathology of Interstitial Lung Diseases PDF, Slide 40: \"Natural History of IPF – Current Concept... Majority of patients have a slow but steady worsening of disease with death 2-5 years after diagnosis\""
+            },
+            {
+                section: "Clinical Approach to Interstitial Lung Disease",
+                maskedLO: "LO5: Prognosis and disease burden.",
+                fullLO: "LO5: Prognosis and disease burden",
+                question: "A patient with severe Idiopathic Pulmonary Fibrosis is being evaluated in the advanced lung disease clinic. The pulmonologist is assessing the patient's risk factors for mortality to prioritize transplant listing. According to studies on IPF mortality, which of the following is considered a significant risk factor for a poor prognosis and mortality?",
+                options: {
+                    A: "Absence of honeycombing on HRCT",
+                    B: "A high FVC (% predicted)",
+                    C: "A high Total Lung Capacity (TLC)",
+                    D: "A low DLCO and need for oxygen therapy",
+                    E: "Youthful age at onset of symptoms"
+                },
+                correctAnswer: "D",
+                rationale: "Risk factors for mortality in pulmonary fibrosis include oxygen therapy pre-op, acute exacerbations, a lower DLCO, a lower TLC (% predicted), mechanical ventilation, and immunosuppression.",
+                source: "Clinical Approach to Interstitial Lung Disease PDF, Slide 53: \"Risk Factors for Mortality: Oxygen therapy pre-op, Acute exacerbation at time of biopsy, Lower DLCO, Lower TLC (% predicted), Mechanical ventilation, Immunosuppressed\""
+            },
+
+            // --- Section 3: Clinical Presentation of Pulmonay Hypertension Cases ---
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO1: Anatomy and Physiology of RV - Recognize the different subtypes of [specific condition].",
+                fullLO: "LO1: Anatomy and Physiology of RV - Recognize the different subtypes of Pulmonary Arterial Hypertension",
+                question: "A healthy 25-year-old man undergoes echocardiography as part of a sports physical. The cardiologist notes that the right ventricle (RV) has a unique anatomy and physiology compared to the left ventricle (LV). Which of the following best describes a fundamental characteristic of the normal RV?",
+                options: {
+                    A: "It ejects blood into a high-resistance, high-impedance system",
+                    B: "It has a heightened sensitivity to acute changes in afterload compared to the LV",
+                    C: "It maintains a constant stroke volume regardless of acute afterload increases",
+                    D: "It possesses a significantly thicker myocardial free wall than the LV",
+                    E: "Its function is completely independent of the size and shape of the LV"
+                },
+                correctAnswer: "B",
+                rationale: "The RV normally operates in a low-pressure, low-impedance system. Consequently, it has a heightened sensitivity to changes in afterload compared to the LV. If afterload increases acutely (e.g., pulmonary embolism), the RV cannot compensate well, and stroke volume decreases proportionately.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 6: \"UNIQUE RV ANATOMY... RV has a heightened sensitivity to changes in changes in afterload compared to LV\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO1: Anatomy and Physiology of RV - Recognize the different subtypes of [specific condition].",
+                fullLO: "LO1: Anatomy and Physiology of RV - Recognize the different subtypes of Pulmonary Arterial Hypertension",
+                question: "A 27-year-old female graduate student presents with dyspnea while training. She has a history of an undifferentiated connective tissue disease. Echocardiography and right heart catheterization reveal severe pulmonary hypertension with no patent foramen ovale. According to the clinical classification of pulmonary hypertension, her disease (associated with connective tissue disease) falls into which WHO Group?",
+                options: {
+                    A: "WHO Group 1 (Pulmonary Arterial Hypertension)",
+                    B: "WHO Group 2 (PH due to Left Heart Disease)",
+                    C: "WHO Group 3 (PH due to Lung Diseases/Hypoxemia)",
+                    D: "WHO Group 4 (Chronic Thromboembolic Pulmonary Hypertension)",
+                    E: "WHO Group 5 (Multifactorial Mechanisms)"
+                },
+                correctAnswer: "A",
+                rationale: "Pulmonary Arterial Hypertension (PAH) is WHO Group 1. It includes idiopathic, heritable, drug-induced, and PAH associated with connective tissue diseases, HIV, portal hypertension, and congenital heart diseases.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 11: \"Clinical Classification of Pulmonary Hypertension... 1. Pulmonary Arterial Hypertension (PAH)... Associated with: Connective tissue diseases\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO2: Hemodynamic definitions of PH.",
+                fullLO: "LO2: Hemodynamic definitions of PH",
+                question: "A 55-year-old woman undergoes right heart catheterization to evaluate her dyspnea. Her results show a mean pulmonary arterial pressure (mPAP) of 30 mmHg, a pulmonary arterial wedge pressure (PAWP) of 10 mmHg, and a pulmonary vascular resistance (PVR) of 4 Wood units. Based on these hemodynamic characteristics, she meets the definition for which of the following conditions?",
+                options: {
+                    A: "Combined post- and pre-capillary pulmonary hypertension (CpcPH)",
+                    B: "Exercise-induced pulmonary hypertension",
+                    C: "Isolated post-capillary pulmonary hypertension (IpcPH)",
+                    D: "Normal pulmonary hemodynamics",
+                    E: "Pre-capillary pulmonary hypertension"
+                },
+                correctAnswer: "E",
+                rationale: "Pre-capillary PH (which includes WHO Group 1 PAH) is defined hemodynamically by an mPAP > 20 mmHg, a PAWP &le; 15 mmHg, and a PVR > 2 Wood units. This patient's values fit these criteria perfectly.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 10: \"Hemodynamic Definitions of Pulmonary Hypertension... Pre-capillary PH: mPAP >20 mmHg, PAWP &le;15 mmHg, PVR >2 WU\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO2: Hemodynamic definitions of PH.",
+                fullLO: "LO2: Hemodynamic definitions of PH",
+                question: "A 68-year-old man with severe left ventricular diastolic dysfunction undergoes right heart catheterization. His mean pulmonary arterial pressure (mPAP) is 35 mmHg, his pulmonary arterial wedge pressure (PAWP) is 22 mmHg, and his pulmonary vascular resistance (PVR) is 1.5 Wood units. Which of the following hemodynamic diagnoses is most appropriate?",
+                options: {
+                    A: "Combined post- and pre-capillary pulmonary hypertension (CpcPH)",
+                    B: "Cor pulmonale",
+                    C: "Isolated post-capillary pulmonary hypertension (IpcPH)",
+                    D: "Pre-capillary pulmonary hypertension",
+                    E: "Pulmonary arterial hypertension (WHO Group 1)"
+                },
+                correctAnswer: "C",
+                rationale: "Isolated post-capillary pulmonary hypertension (IpcPH) is defined by an mPAP > 20 mmHg, PAWP > 15 mmHg, and a PVR &le; 2 Wood units. Left heart disease typically causes this post-capillary profile.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 10: \"Hemodynamic Definitions of Pulmonary Hypertension... IpcPH: mPAP >20 mmHg, PAWP >15 mmHg, PVR &le;2 WU\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO3: Clinical Classification of PH - Know the symptoms, signs and stratification of severity of PH.",
+                fullLO: "LO3: Clinical Classification of PH - Know the symptoms, signs and stratification of severity of PH",
+                question: "A patient with known pulmonary hypertension complains that she is comfortable at rest, but less than ordinary physical activity causes her undue dyspnea, fatigue, and chest pain. According to the clinical classification of symptom severity (NYHA/WHO functional class), which class best describes this patient's current status?",
+                options: {
+                    A: "Class 1",
+                    B: "Class 2",
+                    C: "Class 3",
+                    D: "Class 4",
+                    E: "Class 5"
+                },
+                correctAnswer: "C",
+                rationale: "NYHA/WHO Class 3 is defined as patients who are comfortable at rest, but for whom less than ordinary physical activity causes undue dyspnea, fatigue, syncope, or chest pain.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 15: \"Clinical Presentation of Pulmonary Hypertension... Class 3: Comfortable at rest. Less than ordinary physical activity causes undue dyspnea, fatigue, syncope, chest pain\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO3: Clinical Classification of PH - Know the symptoms, signs and stratification of severity of PH.",
+                fullLO: "LO3: Clinical Classification of PH - Know the symptoms, signs and stratification of severity of PH",
+                question: "During a physical examination of a patient with suspected pulmonary hypertension, the physician evaluates volume status and cardiac output. Which of the following physical exam signs is most strongly associated with pulmonary hypertension and subsequent right ventricular overload?",
+                options: {
+                    A: "A diastolic murmur over the apex radiating to the axilla",
+                    B: "A holosystolic murmur of tricuspid regurgitation that is louder on inspiration",
+                    C: "Bilateral inspiratory wheezing",
+                    D: "Decreased jugular venous pressure (JVP)",
+                    E: "Delayed capillary refill in the upper extremities only"
+                },
+                correctAnswer: "B",
+                rationale: "Signs of pulmonary hypertension and right heart strain include elevated JVP, right ventricular heave, a holosystolic murmur of tricuspid regurgitation (which increases in intensity during inspiration), an S3 or S4 gallop, ascites, and bipedal edema.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 15: \"Clinical Presentation of Pulmonary Hypertension... Signs - volume status and CO: Elevated jugular venous pressure, Right ventricular heave, Holosystolic murmur of tricuspid regurgitation louder in inspiration\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO4: Presentation and Workup of Suspected patients - Discuss the workup of a patient with [condition].",
+                fullLO: "LO4: Presentation and Workup of Suspected patients - Discuss the workup of a patient with Pulmonary Arterial Hypertension",
+                question: "A 45-year-old woman with suspected idiopathic pulmonary arterial hypertension (PAH) undergoes right heart catheterization. During the procedure, the physician administers inhaled nitric oxide to perform vasoreactivity testing. The primary purpose of this test in patients with idiopathic PAH is to:",
+                options: {
+                    A: "Determine the patient's eligibility for lung transplantation",
+                    B: "Diagnose the presence of chronic thromboembolic disease",
+                    C: "Evaluate left ventricular systolic function",
+                    D: "Identify patients who are likely to benefit from treatment with calcium channel blockers (CCBs)",
+                    E: "Measure the absolute maximum cardiac output during exercise"
+                },
+                correctAnswer: "D",
+                rationale: "Vasoreactivity testing determines the relative contribution of reversible vasoconstriction versus fixed stenosis. A positive test identifies patients who are likely to benefit from high-dose calcium channel blocker (CCB) therapy.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 24: \"Vasoreactivity testing in Pulmonary Hypertension... To identify those likely to benefit from treatment with calcium channel blockers (CCBs)\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO4: Presentation and Workup of Suspected patients - Discuss the workup of a patient with [condition].",
+                fullLO: "LO4: Presentation and Workup of Suspected patients - Discuss the workup of a patient with Pulmonary Arterial Hypertension",
+                question: "A 37-year-old pregnant woman presents with shortness of breath and right lower extremity swelling concerning for a deep-vein thrombosis. The physician suspects a pulmonary embolism but decides that a CT pulmonary angiogram (CTPE) cannot be done. Which of the following imaging modalities is the most appropriate alternative step in her workup to identify mismatched perfusion defects?",
+                options: {
+                    A: "Cardiac magnetic resonance imaging (MRI)",
+                    B: "Pulmonary function testing (PFT)",
+                    C: "Right heart catheterization (RHC)",
+                    D: "Transthoracic echocardiography (TTE)",
+                    E: "Ventilation/perfusion (V/Q) lung scanning"
+                },
+                correctAnswer: "E",
+                rationale: "In patients where CT pulmonary angiography (CTPE) cannot or should not be performed (such as in certain pregnant patients), a V/Q scan is the appropriate alternative imaging modality. It is used to evaluate for pulmonary embolism by identifying mismatched perfusion defects.",
+                source: "Clinical Presentation of Pulmonary Hypertension Cases PDF, Slide 21: \"Figure 4. High probability for PE in a 37-year-old pregnant woman with shortness of breath and right lower extremity deep-vein thrombosis... V/Q Scanning in pulmonary embolism... When CTPE cannot be done... Mismatched perfusion defects\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO5: Molecular pathways for PAH and therapeutics - Know the various medications used to treat [condition].",
+                fullLO: "LO5: Molecular pathways for PAH and therapeutics - Know the various medications used to treat PAH",
+                question: "A 50-year-old man with Group 1 Pulmonary Arterial Hypertension (PAH) is started on sildenafil. The mechanism of action of this medication involves acting on molecular pathways within the pulmonary artery to promote vasodilation and anti-proliferation. Sildenafil targets which of the following specific components of these pathways?",
+                options: {
+                    A: "It acts as an endothelin receptor antagonist",
+                    B: "It directly stimulates soluble guanylate cyclase (sGC)",
+                    C: "It inhibits Phosphodiesterase-5 (PDE-5), thereby increasing cGMP",
+                    D: "It is a prostacyclin receptor agonist",
+                    E: "It provides exogenous nitric oxide to the endothelium"
+                },
+                correctAnswer: "C",
+                rationale: "Sildenafil is a PDE5 inhibitor. By inhibiting PDE-5, it prevents the breakdown of cGMP. Elevated cGMP levels promote smooth muscle relaxation (vasodilation) and limit proliferation in the pulmonary artery.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slides 26 & 27: \"Molecular Pathways In PAH... PDE-5 inhibitors\" and \"PDE5 inhibitors: Sildenafil Citrate Therapy for Pulmonary Arterial Hypertension\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO5: Molecular pathways for PAH and therapeutics - Know the various medications used to treat [condition].",
+                fullLO: "LO5: Molecular pathways for PAH and therapeutics - Know the various medications used to treat PAH",
+                question: "A 32-year-old woman is prescribed macitentan (OPSUMIT) for the treatment of her pulmonary arterial hypertension. Because macitentan acts as an Endothelin Receptor Antagonist (ERA), the prescribing physician must provide strict counseling and monitoring regarding which of the following critical safety warnings?",
+                options: {
+                    A: "It causes profound hypoglycemia",
+                    B: "It is highly teratogenic and must not be taken if pregnant",
+                    C: "It requires the patient to change their ventilator filter every 2 hours",
+                    D: "It significantly increases the risk of early-onset dementia",
+                    E: "It triggers immediate anaphylaxis in patients with sulfa allergies"
+                },
+                correctAnswer: "B",
+                rationale: "Macitentan is an endothelin receptor antagonist. A critical black-box warning for ERAs is that they are highly teratogenic and can cause serious birth defects. Patients must strictly avoid pregnancy while on this medication.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 28: \"Endothelin Receptor Antagonists... The most important information about OPSUMIT (macitentan): Do not take OPSUMIT if you are pregnant or trying to get pregnant. OPSUMIT can cause serious birth defects if taken while pregnant.\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO6: Non- pharmacological therapy.",
+                fullLO: "LO6: Non- pharmacological therapy",
+                question: "A 45-year-old patient newly diagnosed with severe pulmonary hypertension is attending a comprehensive clinic visit to discuss non-pharmacologic management strategies. Which of the following interventions is a recommended non-pharmacologic therapy for this patient?",
+                options: {
+                    A: "Daily vigorous aerobic exercise beyond symptom limits",
+                    B: "Elective living at high altitude",
+                    C: "Initiation of intravenous dobutamine",
+                    D: "Referral for lung transplantation assessment",
+                    E: "Routine therapeutic phlebotomy"
+                },
+                correctAnswer: "D",
+                rationale: "Non-pharmacologic therapies for PH include supportive oxygen, age-appropriate vaccinations, travel advice, contraception/pregnancy advice, support groups, and transplant referral.",
+                source: "Clinical Presentation of Pulmonay Hypertension Cases PDF, Slide 38: \"Non-Pharmacologic Therapies for Pulmonary Hypertension... 6. Transplant referral\""
+            },
+            {
+                section: "Clinical Presentation of Pulmonay Hypertension Cases",
+                maskedLO: "LO6: Non- pharmacological therapy.",
+                fullLO: "LO6: Non- pharmacological therapy",
+                question: "A patient with severe right ventricular failure secondary to pulmonary hypertension is admitted to the intensive care unit. The patient exhibits significant signs of volume overload, including ascites and severe bipedal edema. According to volume status and fluid management principles for right ventricular failure, which of the following is an appropriate intervention to reduce right ventricular filling pressures?",
+                options: {
+                    A: "Administration of large-volume intravenous normal saline",
+                    B: "Avoidance of central venous pressure (CVP) monitoring",
+                    C: "Continuous positive airway pressure (CPAP) at maximum settings",
+                    D: "Implementation of diuretics or hemofiltration",
+                    E: "Rapid infusion of packed red blood cells"
+                },
+                correctAnswer: "D",
+                rationale: "In the setting of RV failure and volume overload (which shifts the septum and impairs LV filling), active fluid management is critical. Diuretics or hemofiltration (CRRT) are utilized to optimize volume status, guided by CVP/PCWP.",
+                source: "Clinical Presentation of Pulmonary Hypertension Cases PDF, Slide 37: \"Volume Status and Fluid Management... Diuretics vs Hemofiltration... CRRT\""
+            }
+        ];
+
+        // --- Core Logic ---
+        const quizRoot = document.getElementById('quiz-root');
+        const themeSelect = document.getElementById('theme-select');
+        const pinBtn = document.getElementById('pin-btn');
+        const mainHeader = document.getElementById('main-header');
+        const sectionNav = document.getElementById('section-nav');
+
+        function initQuiz() {
+            // Render Questions
+            let currentSection = "";
+            let sectionIndex = 0;
+            
+            quizData.forEach((item, index) => {
+                // Insert Section Header if needed
+                if (item.section !== currentSection) {
+                    currentSection = item.section;
+                    
+                    // Create ID for scrolling
+                    const sectionId = 'sec-' + sectionIndex;
+                    
+                    // Add Section Header
+                    const sectionHeader = document.createElement('h2');
+                    sectionHeader.className = 'section-header';
+                    sectionHeader.id = sectionId;
+                    sectionHeader.textContent = currentSection;
+                    quizRoot.appendChild(sectionHeader);
+
+                    // Add Nav Button dynamically
+                    const navBtn = document.createElement('button');
+                    // Abbreviate longer titles for the buttons if desired
+                    let btnText = currentSection;
+                    if (btnText.includes("Pathology of Interstitial")) btnText = "Pathology of ILD";
+                    if (btnText.includes("Clinical Approach to Interstitial")) btnText = "Clinical Approach to ILD";
+                    if (btnText.includes("Clinical Presentation of Pulmonay Hypertension Cases")) btnText = "Clinical Presentation of PH";
+                    
+                    navBtn.textContent = btnText;
+                    navBtn.onclick = () => {
+                        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                    };
+                    sectionNav.appendChild(navBtn);
+
+                    sectionIndex++;
+                }
+
+                // Create Card
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-card-${index}`;
+
+                // Learning Objective (Masked)
+                const loBox = document.createElement('div');
+                loBox.className = 'lo-box';
+                loBox.id = `lo-${index}`;
+                loBox.innerHTML = item.maskedLO;
+                card.appendChild(loBox);
+
+                // Question Text
+                const qText = document.createElement('div');
+                qText.className = 'question-text';
+                qText.innerHTML = `${index + 1}. ${item.question}`;
+                card.appendChild(qText);
+
+                // Options Container
+                const optionsGrid = document.createElement('div');
+                optionsGrid.className = 'options-grid';
+
+                for (const [key, value] of Object.entries(item.options)) {
+                    const label = document.createElement('label');
+                    label.className = 'option-label';
+                    
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = `question-${index}`;
+                    input.value = key;
+
+                    const span = document.createElement('span');
+                    // Retain letters: A. Option Text
+                    span.innerHTML = `${key}. ${value}`;
+
+                    label.appendChild(input);
+                    label.appendChild(span);
+                    optionsGrid.appendChild(label);
+                }
+                card.appendChild(optionsGrid);
+
+                // Check Button
+                const btn = document.createElement('button');
+                btn.className = 'btn-check';
+                btn.textContent = 'Check Answer';
+                btn.onclick = () => checkAnswer(index);
+                card.appendChild(btn);
+
+                // Feedback Container
+                const feedback = document.createElement('div');
+                feedback.className = 'feedback';
+                feedback.id = `feedback-${index}`;
+                card.appendChild(feedback);
+
+                quizRoot.appendChild(card);
+            });
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('quizTheme') || 'dark';
+            changeTheme(savedTheme);
+            themeSelect.value = savedTheme;
+
+            // Load saved pin state
+            const savedPinState = localStorage.getItem('headerPinned');
+            // Default to true (pinned) if not set or if set to true
+            if (savedPinState === 'false') {
+                toggleHeader(false); 
+            } else {
+                toggleHeader(true);
+            }
+        }
+
+        function checkAnswer(index) {
+            const selected = document.querySelector(`input[name="question-${index}"]:checked`);
+            const feedbackEl = document.getElementById(`feedback-${index}`);
+            const loEl = document.getElementById(`lo-${index}`);
+            const data = quizData[index];
+
+            if (!selected) {
+                alert("Please select an answer.");
+                return;
+            }
+
+            // Reveal LO
+            loEl.innerHTML = data.fullLO;
+
+            // Generate Feedback HTML
+            const isCorrect = selected.value === data.correctAnswer;
+            
+            let html = `<span class="feedback-header">${isCorrect ? "Correct!" : "Incorrect"}</span>`;
+            if (!isCorrect) {
+                html += `<div>The correct answer is <strong>${data.correctAnswer}</strong>.</div>`;
+            }
+            
+            html += `<div class="rationale"><strong>Rationale:</strong> ${data.rationale}</div>`;
+            html += `<div class="source"><strong>Source:</strong> ${data.source}</div>`;
+
+            feedbackEl.innerHTML = html;
+            feedbackEl.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedbackEl.style.display = 'block';
+        }
+
+        function changeTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('quizTheme', themeName);
+        }
+
+        function toggleHeader(forceState) {
+            // Determine current state based on class presence
+            const isCurrentlyPinned = !mainHeader.classList.contains('unpinned');
+            
+            // If forceState is provided (boolean), use it. Otherwise toggle current state.
+            const newState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyPinned;
+
+            if (newState) {
+                // Pin
+                mainHeader.classList.remove('unpinned');
+                pinBtn.classList.add('pin-active');
+                localStorage.setItem('headerPinned', 'true');
+            } else {
+                // Unpin
+                mainHeader.classList.add('unpinned');
+                pinBtn.classList.remove('pin-active');
+                localStorage.setItem('headerPinned', 'false');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initQuiz);
+
+    </script>
+</body>
+</html>
