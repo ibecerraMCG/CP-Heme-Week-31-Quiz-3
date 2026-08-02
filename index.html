@@ -1391,7 +1391,7 @@ function save(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); 
 const sections = [];
 quizData.forEach(q => { if (!sections.includes(q.section)) sections.push(q.section); });
 function shortLabel(name) {
-    const map = {};
+    const map = {"Pathology of Interstitial Lung Disease":"Interstitial Lung Path","Clinical Approach to Interstitial Lung Disease":"Interstitial Lung Disease","Clinical Presentation of Pulmonary Hypertension Cases":"Pulmonary Hypertension Cases"};
     return map[name] || name;
 }
 window.__bbShortLabel = shortLabel;
